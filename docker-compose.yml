@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  redis:
+    image: redis:alpine
+    command: redis-server --port 16379 --requirepass develop
+    container_name: redis_16379
+    hostname: redis_16379
+    restart: always
+    labels:
+      - "name=redis"
+      - "mode=standalone"
+    ports:
+      - 16379:16379
+    volumes:
+      - ./redis/data:/data
+  mysql:
+    hostname: rsupport-mysql
+    image: library/mysql:5.7
+    container_name: rsupport-mysql
+    restart: always
+    ports:
+      - 13306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      TZ: Asia/Seoul
+    volumes:
+      - ./mysql/data:/var/lib/mysql --user 1000
+      - ./mysql/init:/docker-entrypoint-initdb.d
+    platform: linux/x86_64
+    healthcheck:
+      test: [ "CMD", "mysqladmin" ,"ping", "-h", "localhost" ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
