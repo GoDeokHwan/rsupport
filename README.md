@@ -7,7 +7,7 @@
 ```shell
 docker-compose up -d
 ```
-3. Gradle bootrun
+3. Gradle bootrun ( 예상 오류 mysql이 뜨기전에 실행하시면 mysql 연결이 안된다는 오류 발생 기다렸다가 다시 시도해주세요. )
 ```shell
 ./gradlew bootRun
 ```
