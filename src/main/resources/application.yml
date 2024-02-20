@@ -56,31 +56,3 @@ springdoc:
   show-actuator: true
   default-consumes-media-type: application/json;charset=UTF-8
   default-produces-media-type: application/json;charset=UTF-8
-
----
-spring:
-  config:
-    activate:
-      on-profile: docker
-  application:
-    name: rsupport-api
-  datasource:
-    url: jdbc:mysql://mysql:3306/rsupportdb
-    username: root
-    password: root
-    driver-class-name: com.mysql.cj.jdbc.Driver
-  jpa:
-    show-sql: false
-    properties:
-      hibernate:
-        format_sql: false
-        type: false
-#logging:
-#  level:
-#    org.hibernate.SQL: INFO
-#    org.hibernate.type.descriptor.sql.BasicBinder: INFO
-
-logging:
-  level:
-    org.hibernate.SQL: DEBUG
-    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
