@@ -3,7 +3,11 @@
 ## 실행 방법
 1. Docker 설치 및 실행
    (설치 방법 : https://analytics4everything.tistory.com/213)
-2. docker-compose.yml 파일 위치에서 명령어 실행
+2. build 명령어 실행
+```shell
+./gradlew wrapper --gradle-version 8.0 clean build
+```
+3. docker-compose.yml 파일 위치에서 명령어 실행
 ```shell
 docker-compose up -d
 ```

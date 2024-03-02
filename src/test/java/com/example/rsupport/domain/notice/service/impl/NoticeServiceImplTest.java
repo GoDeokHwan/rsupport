@@ -6,21 +6,30 @@ import com.example.rsupport.domain.notice.service.NoticeService;
 import com.example.rsupport.global.exception.ApiException;
 import com.example.rsupport.global.exception.ResponseMessage;
 import com.example.rsupport.model.notice.entity.dto.AttachmentWithNoticeDTO;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.data.redis.DataRedisTest;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.cache.CacheManager;
+import org.springframework.cache.Cache;
+import org.springframework.data.redis.cache.RedisCacheManager;
+import org.springframework.test.util.ReflectionTestUtils;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import static org.mockito.Mockito.*;
 @Transactional
 @SpringBootTest
 class NoticeServiceImplTest {
     @Autowired
     private NoticeService noticeService;
-
     @Test
     void 공지사항_생성() {
         // given
@@ -44,7 +53,6 @@ class NoticeServiceImplTest {
 
     @Test
     void 공지사항_수정() {
-        // given
         String updateTitle = "수정 제목";
         String updateContent = "수정 내용내용";
         NoticeUpdateRequest updateRequest = new NoticeUpdateRequest(

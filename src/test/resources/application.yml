@@ -2,10 +2,10 @@ spring:
   application:
     name: rsupport-api
   datasource:
-    url: jdbc:mysql://localhost:13306/rsupportdb?useSSL=false&allowPublicKeyRetrieval=true
-    username: root
-    password: root
-    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:h2:mem:buzzvildb
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
   server:
     servlet:
       encoding:
@@ -27,8 +27,8 @@ server:
   port: 8180
 
 redis:
-  port: 16379
-  host: 127.0.0.1
+  port: 6379
+  host: localhost
   password: develop
 
 management:
@@ -56,31 +56,3 @@ springdoc:
   show-actuator: true
   default-consumes-media-type: application/json;charset=UTF-8
   default-produces-media-type: application/json;charset=UTF-8
-
----
-spring:
-  config:
-    activate:
-      on-profile: docker
-  application:
-    name: rsupport-api
-  datasource:
-    url: jdbc:mysql://mysql:3306/rsupportdb?useSSL=false&allowPublicKeyRetrieval=true
-    username: root
-    password: root
-    driver-class-name: com.mysql.cj.jdbc.Driver
-  jpa:
-    show-sql: false
-    properties:
-      hibernate:
-        format_sql: false
-        type: false
-logging:
-  level:
-    org.hibernate.SQL: INFO
-    org.hibernate.type.descriptor.sql.BasicBinder: INFO
-
-redis:
-  host: redis
-  port: 16379
-  password: develop

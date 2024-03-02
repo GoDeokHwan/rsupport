@@ -46,9 +46,14 @@ dependencies {
     implementation 'com.fasterxml.jackson.core:jackson-databind'
     implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310'
 
+    testImplementation 'com.h2database:h2:2.2.224'
 
     // Redis
     implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+    // https://mvnrepository.com/artifact/com.github.kstyrc/embedded-redis
+    testImplementation 'com.github.kstyrc:embedded-redis:0.6'
+
+
 }
 
 tasks.named('test') {
